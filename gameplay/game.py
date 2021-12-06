@@ -54,8 +54,8 @@ class Game:
         self.display.updateLine(1, 4, f"     \____/  /____/___/_/  |_/_/ |_/_/  |_(_)   ")
         self.display.updateLine(1, 5, f" ")
         self.display.updateLine(
-            1, 6, f"Apsveicu tu uzminēji vārdu {self.vards}.\
-            Spēles laks (hh:mm:ss) {time_elapsed}")
+            1, 6, f"Apsveicu tu uzminēji vārdu {self.vards}. "
+                + f"Spēles laiks (hh:mm:ss) {time_elapsed}")
 
         self.display.updateLine(
             2, 1, 
@@ -83,8 +83,8 @@ class Game:
         self.display.updateLine(1, 5, f" ")
         self.display.updateLine(
             1, 6, 
-            f"Nezināmais vārds bija {self.vards}. Spēles laks (hh:mm:ss)\
-            {time_elapsed}")
+                f"Nezināmais vārds bija {self.vards}. "
+              + f"Spēles laiks (hh:mm:ss) {time_elapsed}")
 
         self.display.updateLine(
             2, 1, f"   Dzīvības: {self.dzivibas}")
@@ -108,7 +108,7 @@ class Game:
         self.display.updateLine(1, 5, f" ")
         self.display.updateLine(
             1, 6, 
-            f"Nezināmais vārds bija {self.vards}. Spēles laks (hh:mm:ss) {time_elapsed}")
+            f"Nezināmais vārds bija {self.vards}. Spēles laiks (hh:mm:ss) {time_elapsed}")
         self.display.updateLine(
             1, 7, 
             f"Paldies par spēli gaidīsim tevi atkal!")

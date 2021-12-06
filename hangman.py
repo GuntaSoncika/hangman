@@ -15,9 +15,9 @@ to make the game work as expected"""
 
 display = Display()
 display.updateLine(2, 1, "Grūtības pakāpes:")
-display.updateLine(2, 2, "    1. viegla")
-display.updateLine(2, 3, "    2. vidēja")
-display.updateLine(2, 4, "    3. grūta")
+display.updateLine(2, 2, "    1. Viegla")
+display.updateLine(2, 3, "    2. Vidēja")
+display.updateLine(2, 4, "    3. Grūta")
 display.updateLine(2, 5, "    4. English Word")
 for n in range(0, 4):
     display.animate(left_colums_animation=AnimationHangman())
@@ -45,19 +45,23 @@ while not deriga_ievade:
         if ievade == '1':
             grutibas_pakape_file = 'easy_words.txt'
             deriga_ievade = True
-            grutibas_pakape = "viegla"
+            grutibas_pakape = "Viegla"
         elif ievade == '2':
             grutibas_pakape_file = 'medium_words.txt'
             deriga_ievade = True
-            grutibas_pakape = "vidēja"
+            grutibas_pakape = "Vidēja"
         elif ievade == '3':
             grutibas_pakape_file = 'hard_words.txt'
             deriga_ievade = True
-            grutibas_pakape = "grūta"
+            grutibas_pakape = "Grūta"
         elif ievade == '4':
             grutibas_pakape_file = 'English Word'
             deriga_ievade = True
             grutibas_pakape = "English Word"
+        elif ievade == '5':
+            grutibas_pakape_file = 'Lidmašīna'
+            deriga_ievade = True
+            grutibas_pakape = "Viegla"
         else:
             display.updateLine
             (1, 7, "Nepareizi izvēlēta grūtības pakāpe!\
@@ -67,6 +71,9 @@ while not deriga_ievade:
 if grutibas_pakape_file == 'English Word':
     english_words = EnglishWords()
     words_list = english_words.get_words()
+
+elif grutibas_pakape_file == 'Lidmašīna':
+    words_list = ["Lidmašīna" for n in range(5)]
 else:
     # Izveido absolūtu ceļu līdz words.txt failam
     # 1. Atrod skripta atrašanās vietu

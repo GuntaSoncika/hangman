@@ -1,3 +1,23 @@
+"""This file is meant for measuring and adding difficulty for every
+word for the game, so that it would be done automatically.
+
+Word difficulty is being measured by 4 parameters. First one is the 
+length of the word - the longer the word, the higher the score. 
+Second is popular letter count, which counts how many of the most
+popular letters for guessing are in the word. In this parameter score
+is set higher, if there are less of the popular letters included in the
+word. Third parameter is least popular letter count in the word, which
+measures the amount of least popular letters for guessing in the word.
+The higher the amount of these letters are in the word, the higher the
+score is set. The fourth parameter is unique letter function, which
+measures letter reppetitiveness in the word. The bigger the amount of
+letters repeating in the word from the words length, the less score is
+added. In the end of this file is function for calculating each words
+overall score and adding it to the difficulty levels:
+easy, medium, hard.
+"""
+
+
 # Jauns fails
 import os
 
@@ -19,7 +39,8 @@ with open(words_file, 'r', encoding='utf-8') as file:
 words_list = words_str.splitlines()
 
 # print(words_list)
-"""1st difficulty setting calculates word length - the longer the word, the higher the difficulty"""
+"""1st difficulty setting calculates word length - the longer the word,
+the higher the difficulty"""
 word_len = []
 for word in words_list:
     word_len.append(len(word))
@@ -28,8 +49,10 @@ word_len_unique = []
 for word in words_list:
     word_len_unique.append(len(set(word)))
 
-"""2nd difficulty setting calculates the amount of most popular letters for guessing in the word.
-The higher the amount of these letters, the easier the difficulty"""
+"""2nd difficulty setting calculates the amount of most popular letters
+for guessing in the word. The higher the amount of these letters,
+the easier the difficulty
+"""
 popular_letters = ['A', 'S', 'I', 'E', 'T', 'R', 'N', 'P', 'Ā']
 popular_letters_count = []
 for word in words_list:
@@ -39,8 +62,10 @@ for word in words_list:
             count += 1
     popular_letters_count.append(count)
 
-"""2nd difficulty setting calculates the amount of least popular letters for guessing in the word.
-The higher the amount of these letters, the harder the difficulty"""
+"""2nd difficulty setting calculates the amount of least popular letters
+for guessing in the word. The higher the amount of these letters, 
+the harder the difficulty
+"""
 unpopular_letters = ['G', 'Ņ', 'Ļ', 'Ģ', 'Ķ', 'Ž', 'H', 'Č']
 unpopular_letters_count = []
 for word in words_list:
@@ -54,7 +79,9 @@ score_list = []
 for n in range(0, len(words_list)):
 
     #Vārda garuma punktu sadale
-    """Score count for word length - for more letters is added higher score, which gives additional points to overall difficulty"""
+    """Score count for word length - for more letters is added higher
+    score, which gives additional points to overall difficulty
+    """
     word_len_score = 0
     if word_len[n] < 7:
         pass
@@ -67,7 +94,9 @@ for n in range(0, len(words_list)):
 
 
     #Unikālo burtu punktu sadale
-    """Unique letter count function. The more the reppetitive letters are in the word, the easier the overall difficulty"""
+    """Unique letter count function. The more the reppetitive letters 
+    are in the word, the easier the overall difficulty
+    """
     letter_repetitiveness_score = 0
     if word_len[n] > 7:
         letter_repetitiveness = int(((word_len[n] - word_len_unique[n]) * 100) / word_len[n])
@@ -114,14 +143,19 @@ for n in range(0, len(words_list)):
     else:
         pass
 
-    score = word_len_score + letter_repetitiveness_score + popular_letter_score + unpopular_letter_score
+    score = (word_len_score
+            + letter_repetitiveness_score
+            + popular_letter_score
+            + unpopular_letter_score)
     score_list.append(score)
 
 print('Score novērtējumu sadalījums:')
 for i in range(1, 12):
     print(f"{i}: {score_list.count(i)}")
 
-"""Function for word list split in 3 difficulties - easy, medium and hard. Also added a chance for user to choose the difficulty of the game"""
+"""Function for word list split in 3 difficulties - easy, medium and hard.
+Also added a chance for user to choose the difficulty of the game
+"""
 easy_words_list = []
 medium_words_list = []
 hard_words_list = []
@@ -141,7 +175,9 @@ easy_words_file = os.path.join(script_dir, '..', 'data', 'easy_words.txt')
 medium_words_file = os.path.join(script_dir, '..', 'data', 'medium_words.txt')
 hard_words_file = os.path.join(script_dir, '..', 'data', 'hard_words.txt')
 
-"""3 different files for difficulties added, which include only words of the needed difficulties in the files with acording name"""
+"""3 different files for difficulties added, which include only words of
+the needed difficulties in the files with acording name
+"""
 with open(easy_words_file, 'w', encoding='utf-8') as file:
 	file.write(easy_words)
 
